@@ -1,0 +1,102 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# ___
+# 
+# Source:'http://www.pieriandata.com'
+# # Seaborn Exercises
+# 
+
+# In[1]:
+
+
+# IMPORTS
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[2]:
+
+
+sns.set_style('whitegrid')
+
+
+# In[3]:
+
+
+#DATA IMPORT
+
+titanic = sns.load_dataset('titanic')
+
+
+# In[4]:
+
+
+# Exploring dataset 
+
+titanic.head()
+
+
+# In[5]:
+
+
+# Joint plot
+
+sns.jointplot(x="fare", y="age",data= titanic)
+
+
+# In[10]:
+
+
+# Distribution plot
+
+sns.distplot(titanic["fare"], bins= 35, color= "red", kde= False)
+
+
+# In[13]:
+
+
+# BOX PLOT
+
+sns.boxplot(data=titanic, x="class",y="age",palette="rainbow") 
+
+# palette is optional, plot works fine without palette als
+
+
+# In[14]:
+
+
+# SWARM PLOT
+
+sns.swarmplot(x="class", y="age",data=titanic)
+
+
+# In[17]:
+
+
+# BAR PLOT with  Count plot
+
+sns.countplot(x=titanic["sex"])
+
+
+# In[19]:
+
+
+# HEAT MAP with Correlation
+
+sns.heatmap(titanic.corr(), cmap="coolwarm")
+plt.title("titanic_corr")
+
+
+# In[27]:
+
+
+# FACET GRID
+
+g = sns.FacetGrid(data=titanic, col="sex")
+g.map(plt.hist,"age") # or we can also use g.map(sns.distplot,"age")
+
+
+# #HAPPY CODIN!!
